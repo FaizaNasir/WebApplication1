@@ -12,11 +12,11 @@ branches:
   master:
     regex: master
     is-release-branch: true 
-  hotfix:
-    regex: hotfix/
+  stable:
+    regex: stable/
     tag: ''
     increment: Patch
-    is-release-branch: false
+    is-release-branch: true
     is-mainline: true
     source-branches: ['master']
   feature:
@@ -24,13 +24,24 @@ branches:
     mode: ContinuousDeployment
     track-merge-target: true
     is-release-branch: false
-    source-branches: ['master', 'release',  'feature', 'hotfix', ]
-  develop:
-    regex: develop/
+    source-branches: ['master', 'release', 'customer', 'feature', 'hotfix', ]
+  hotfix:
+    regex: hotfix/
     mode: ContinuousDeployment
     track-merge-target: true
     is-release-branch: false
-    source-branches: ['master', 'release',]
- 
+    source-branches: ['master', 'release', 'customer']
+  update:
+    regex: update/
+    mode: ContinuousDeployment
+    track-merge-target: true
+    is-release-branch: false
+    source-branches: ['master', 'release', 'customer', 'feature', 'hotfix']
+  customer:
+    regex: customer/
+    mode: ContinuousDeployment
+    track-merge-target: true
+    is-release-branch: false
+    source-branches: ['master', 'release', 'customer']
 ignore:
   sha: []
