@@ -1,14 +1,6 @@
 mode: mainline
 tag-prefix: 'gv'
 branches:
-  release:
-    regex: release/
-    tag: rc
-    mode: ContinuousDeployment
-    tracks-release-branches: true
-    track-merge-target: true
-    is-release-branch: false
-    source-branches: ['master', 'release']
   master:
     regex: master
     is-release-branch: true 
