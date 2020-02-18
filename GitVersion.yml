@@ -12,6 +12,12 @@ branches:
   master:
     regex: master
     is-release-branch: true 
+  plugin:
+    regex: plugin/
+    mode: ContinuousDeployment
+    track-merge-target: true
+    is-release-branch: true
+    source-branches: ['master']
   hotfix:
     regex: hotfix/
     tag: ''
@@ -31,6 +37,7 @@ branches:
     track-merge-target: true
     is-release-branch: false
     source-branches: ['master', 'release',]
+
  
 ignore:
   sha: []
