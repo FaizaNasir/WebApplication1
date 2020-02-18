@@ -1,48 +1,36 @@
-mode: ContinuousDeployment
-tag-prefix: gv
-next-version: 1.0.0
+mode: mainline
+tag-prefix: 'gv'
 branches:
   release:
-    mode: ContinuousDeployment
-    tag: rc
-    track-merge-target: true
     regex: release/
-    source-branches:
-    - master
-    - release
+    tag: rc
+    mode: ContinuousDeployment
     tracks-release-branches: true
+    track-merge-target: true
     is-release-branch: false
+    source-branches: ['master', 'release']
   master:
-    mode: ContinuousDeployment
     regex: master
-    is-release-branch: true
+    is-release-branch: true 
   hotfix:
-    mode: ContinuousDeployment
+    regex: hotfix/
     tag: ''
     increment: Patch
-    regex: hotfix/
-    source-branches:
-    - master
     is-release-branch: false
     is-mainline: true
+    source-branches: ['master']
   feature:
-    mode: ContinuousDeployment
-    track-merge-target: true
     regex: feature/
-    source-branches:
-    - master
-    - release
-    - feature
-    - hotfix
-    is-release-branch: false
-  develop:
     mode: ContinuousDeployment
     track-merge-target: true
-    regex: develop/
-    source-branches:
-    - master
-    - release
     is-release-branch: false
+    source-branches: ['master', 'release',  'feature', 'hotfix', ]
+  develop:
+    regex: develop/
+    mode: ContinuousDeployment
+    track-merge-target: true
+    is-release-branch: false
+    source-branches: ['master', 'release',]
+ 
 ignore:
   sha: []
-merge-message-formats: {}
