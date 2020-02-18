@@ -1,6 +1,36 @@
 mode: mainline
 tag-prefix: 'gv'
 branches:
+  release:
+    regex: release/
+    tag: rc
+    mode: ContinuousDeployment
+    tracks-release-branches: true
+    track-merge-target: true
+    is-release-branch: false
+    source-branches: ['master', 'release']
   master:
     regex: master
     is-release-branch: true 
+  hotfix:
+    regex: hotfix/
+    tag: ''
+    increment: Patch
+    is-release-branch: false
+    is-mainline: true
+    source-branches: ['master']
+  feature:
+    regex: feature/
+    mode: ContinuousDeployment
+    track-merge-target: true
+    is-release-branch: false
+    source-branches: ['master', 'release',  'feature', 'hotfix', ]
+  develop:
+    regex: develop/
+    mode: ContinuousDeployment
+    track-merge-target: true
+    is-release-branch: false
+    source-branches: ['master', 'release',]
+ 
+ignore:
+  sha: []
